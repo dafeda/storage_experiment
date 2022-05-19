@@ -18,7 +18,7 @@
 
 # %%
 import numpy as np
-rng = np.random.default_rng(12345)
+rng = np.random.default_rng()
 import pandas as pd
 
 from p_tqdm import p_map
