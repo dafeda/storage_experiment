@@ -1,0 +1,5 @@
+pandas
+p_tqdm
+jupyter
+jupytext
+tables
