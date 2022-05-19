@@ -32,8 +32,10 @@ N = 100
 
 # %%
 def write_to_many(N):
-    df = pd.DataFrame(rng.normal(size=p), columns=[f"{N}"])
-    df.to_hdf(f"Ensemble_{N}.h5", key="df", mode="w")
+    params = pd.DataFrame(rng.normal(size=p), columns=[f"{N}"])
+    params.to_hdf(f"Ensemble_{N}.h5", key="parameters", mode="a")
+    responses = pd.DataFrame(rng.normal(size=p), columns=[f"{N}"])
+    responses.to_hdf(f"Ensemble_{N}.h5", key="responses", mode="a")
     return True
 
 
@@ -52,7 +54,7 @@ print(f"Writing to {N} hdf5 files where each contains {p} numbers takes:")
 # %%time
 df = pd.DataFrame(index=np.arange(0, p))
 for i in range(N):
-    df = df.join(pd.read_hdf(f"Ensemble_{i}.h5"))
+    df = df.join(pd.read_hdf(f"Ensemble_{i}.h5", key="parameters"))
     
 print(f"Combining {N} hdf5 files containing {p} numbers each into one data frame takes:")
 
